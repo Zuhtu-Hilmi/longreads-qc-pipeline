@@ -1,0 +1,8 @@
+# =============================================================================
+# Pipeline Configuration
+# =============================================================================
+# Path to the input FASTQ file (long-read sequencing data)
+input_fastq: "data/sample.fastq"
+
+# Output directory for all results
+output_dir: "results"
