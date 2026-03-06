@@ -70,7 +70,7 @@ Bioinformatics/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/longreads-qc-pipeline.git
+git clone https://github.com/Zuhtu-Hilmi/longreads-qc-pipeline.git
 cd longreads-qc-pipeline
 ```
 
@@ -115,7 +115,7 @@ You can also run the custom scripts independently:
 
 ```bash
 # Calculate per-read statistics
-python scripts/read_stats.py data/sample.fastq results/read_statistics.csv
+python scripts/read_stats.py data/barcode77.fastq.gz results/read_statistics.csv
 
 # Generate plots from the statistics CSV
 python scripts/plot_stats.py results/read_statistics.csv results/plots/
@@ -187,24 +187,24 @@ After running the pipeline, you will see summary statistics similar to:
 
 ```
 ============================================================
-        SUMMARY STATISTICS — LONG-READ QC
+        SUMMARY STATISTICS -- LONG-READ QC
 ============================================================
-  Total Reads:  100
-  Total Bases:  551,234 bp
+  Total Reads:  81,011
+  Total Bases:  84,108,485 bp
 
-  ── Read Length (bp) ─────────────────────────
-    Mean:          5,512.3
-    Median:        4,867.0
-    N50:           7,234
+  -- Read Length (bp) -------------------------
+    Mean:         1,038.2
+    Median:         547.0
+    N50:            1,761
 
-  ── GC Content (%) ──────────────────────────
-    Mean:            49.87
-    Median:          50.12
+  -- GC Content (%) --------------------------
+    Mean:           53.00
+    Median:         53.53
 
-  ── Mean Quality Score (Phred) ──────────────
-    Mean:            10.15
-    Median:           10.32
-    Reads ≥ Q7:        95  (95.0%)
+  -- Mean Quality Score (Phred) --------------
+    Mean:           17.90
+    Median:         17.31
+    Reads >= Q7:    73,993  (91.3%)
 ============================================================
 ```
 

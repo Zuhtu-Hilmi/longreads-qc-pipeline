@@ -2,41 +2,43 @@
 
 ---
 
-**To:** Professor Kilic  
-**From:** Zuhtu Hilmi  
-**Subject:** QC results from the barcode77 long-read run  
-**Date:** March 2026
+**To:** Professor Kilic
+**From:** Zuhtu Hilmi
+**Subject:** barcode77 QC -- results are in
+**Date:** 6 March 2026
 
 ---
 
-Dear Professor Kilic,
+Hocam, merhaba,
 
-I hope you're doing well. I've finished running the quality check on the sequencing data from the barcode77 sample you sent over (the one related to the spoiled product investigation). Here's a quick rundown of what I found.
+I ran the quality check on barcode77 and wanted to share what came out before we go any further.
 
-I set up an automated pipeline that goes through all 81,011 reads in the FASTQ file and calculates three things for each one: read length, GC content, and average quality score. I also ran NanoPlot, which is the go-to tool for nanopore QC -- it generates an interactive HTML report you can open in your browser.
+So in short -- I wrote a pipeline that parses every read in the file and pulls out three things: length, GC percentage, and quality score. On top of that I ran NanoPlot (it's basically the standard QC tool for nanopore data). The whole analysis is reproducible, everything's stored in a Snakemake pipeline with a conda environment file.
 
-Here are the main takeaways:
+Here's what the numbers look like:
 
-Regarding read lengths -- the median is around 547 bp, with a mean of about 1,038 bp. There's a wide spread though, with some very long reads going up to ~686 kb. The N50 is 1,761 bp. A lot of reads are on the shorter side, which might partly be due to the nature of the sample (degraded DNA from a spoiled product can fragment more than usual). That said, there's still a good chunk of longer reads, and the total throughput is ~84 million bases, which should give us decent coverage.
+We've got about 81 thousand reads and roughly 84 million bases total. The median read length came out to be around 547 bp, mean around 1,038. That's a bit on the shorter side, but honestly not surprising -- the sample is from a spoiled product, so the DNA was probably already partially degraded before extraction. There are still some nice long reads in there too, the longest one is almost 700 kb. N50 is 1,761 bp.
 
-For GC content, the distribution is centered around 53%, which is consistent with what we'd expect from common foodborne bacterial species. The distribution looks clean and fairly symmetrical, so I don't see obvious signs of contamination from unrelated organisms.
+GC is sitting at about 53% on average, distribution is tight and symmetrical. That lines up well with common foodborne bacteria, so no red flags there.
 
-Quality-wise, the data looks really solid. The mean quality is Q17.9, and 91% of reads are above Q7 (the standard nanopore threshold). About 78% are above Q10. These are strong numbers -- way above what's needed for reliable downstream analysis.
+Quality is actually really good. Average is around Q18, and over 91% of reads clear Q7 (which is the usual passable threshold for nanopore). 78% are above Q10. We can definitely work with this.
 
-My recommendation: the data quality is good, and I'd say we should go ahead with alignment. Given the food safety context, we could align these against databases of known foodborne pathogens (Salmonella, Listeria, E. coli, etc.) to try to identify the organism responsible for spoilage. If you already have a suspect species in mind, let me know and I can align directly against that reference genome.
+So my take -- the data's solid enough to move forward. What I'd suggest is running Kraken2 or a similar classifier first to see which organisms are actually present, and then do a targeted alignment against the reference genome of whatever comes up as the main hit. That way we get both a broad picture and a detailed one.
 
-A couple of things I'd like to confirm before moving forward:
-- Do you have a specific pathogen or organism you suspect?
-- Should we run a broader metagenomic classification first (using something like Kraken2) before doing a targeted alignment?
+Before I start though, couple questions:
+- Do you already have a suspect organism in mind, or should I do the classification first?
+- Is there a specific reference database you'd want me to use?
 
-I've attached the plots and the detailed stats below. The NanoPlot report is also included -- you can just double-click the HTML file to open it.
+I'm attaching the distribution plots and a stats summary file. There's also the NanoPlot HTML report -- you can just open it in a browser, it's interactive so you can zoom in on things.
 
-Best regards,
+Let me know how you'd like to proceed.
+
+Saygilarimla,
 Zuhtu Hilmi
 
 ---
 
-*Attachments:*
+Attachments:
 - gc_content_distribution.png
 - read_length_distribution.png
 - mean_quality_distribution.png
