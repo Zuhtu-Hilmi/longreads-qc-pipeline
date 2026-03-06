@@ -1,6 +1,6 @@
-# 🧬 Mini-Bioinformatics Pipeline: Long-Read Sequencing QC
+# Long-Read Sequencing QC Pipeline
 
-A reproducible **Snakemake** pipeline for Quality Control (QC) of raw long-read sequencing data (e.g., Oxford Nanopore, PacBio). The pipeline runs NanoPlot for comprehensive QC, computes per-read statistics (GC content, read length, mean quality), and generates publication-quality distribution plots.
+A reproducible **Snakemake** pipeline for Quality Control (QC) of raw long-read sequencing data (Oxford Nanopore). Developed for a food safety investigation to assess the quality of barcode-demultiplexed Nanopore reads before downstream pathogen identification. The pipeline runs NanoPlot for comprehensive QC, computes per-read statistics (GC content, read length, mean quality), and generates distribution plots.
 
 ---
 
@@ -40,7 +40,7 @@ Bioinformatics/
 ├── README.md                        # This file
 ├── email_to_professor.md            # Email draft for Prof. Kılıç
 ├── data/
-│   └── sample.fastq                 # Test FASTQ (generated or user-provided)
+│   └── barcode77.fastq.gz           # Input FASTQ (not tracked in git)
 ├── scripts/
 │   ├── generate_test_data.py        # Synthetic test data generator
 │   ├── read_stats.py                # Per-read statistics calculator

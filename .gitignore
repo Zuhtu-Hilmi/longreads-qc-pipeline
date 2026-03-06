@@ -1,6 +1,13 @@
 # Pipeline outputs
 results/
 
+# Raw data (too large for git)
+data/*.fastq
+data/*.fastq.gz
+
+# Case study source files
+Case Study*/
+
 # Snakemake internals
 .snakemake/
 

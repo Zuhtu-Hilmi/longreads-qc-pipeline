@@ -16,6 +16,7 @@ Usage:
 import sys
 import os
 import csv
+import gzip
 
 
 def phred_score(char: str) -> int:
@@ -42,9 +43,10 @@ def compute_mean_quality(quality_string: str) -> float:
 def parse_fastq(filepath: str):
     """
     Generator that yields (read_id, sequence, quality_string) tuples
-    from a FASTQ file.
+    from a FASTQ file. Supports both plain and gzipped (.gz) files.
     """
-    with open(filepath, "r") as fh:
+    open_func = gzip.open if filepath.endswith(".gz") else open
+    with open_func(filepath, "rt") as fh:
         while True:
             header = fh.readline().strip()
             if not header:
